@@ -1,0 +1,62 @@
+import javax.swing.*;
+import java.awt.GridLayout;
+import java.awt.event.*;
+public class CurrencyConverter  extends JFrame implements ActionListener{
+	JTextField pakCurrency, dollar, pound;
+	JLabel pkr, usd, gbp;
+	JButton convert, clear;
+	JLabel btn1, btn2;
+	
+	CurrencyConverter(){
+		setLayout(new GridLayout(5,2,30,30));
+		setSize(400,400);
+		setTitle("Currency Converter");
+		
+		pakCurrency = new JTextField(" ");
+		dollar = new JTextField(" ");
+		pound = new JTextField(" ");
+		
+		pkr = new JLabel("Enter Pakistani Rupees: ");
+		add(pkr);
+		add(pakCurrency);
+		
+		convert = new JButton("Convert");
+		add(convert);
+		
+		JLabel test =new JLabel();
+		add(test);
+		
+		usd = new JLabel("Rupees in USD: ");
+		add(usd);
+		add(dollar);
+		gbp = new JLabel("Rupees in GBP: ");
+		add(gbp);
+		add(pound);
+		
+		clear = new JButton("Clear");
+		add(clear);
+		
+		convert.addActionListener(this);
+		clear.addActionListener(this);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	public static void main(String[] args) {
+		new CurrencyConverter();
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		double pkr = Double.parseDouble(pakCurrency.getText());
+		double convertToD = pkr * 0.0036;
+		double convertToP = pkr * 0.0027;
+		
+		dollar.setText(String.valueOf(convertToD));
+		pound.setText(String.valueOf(convertToP));
+		
+		if(e.getSource() == clear) {
+			pakCurrency.setText(" ");
+			dollar.setText(" ");
+			pound.setText(" ");
+		}
+	}
+}
