@@ -1,0 +1,86 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.*;
+import javax.swing.*;
+
+public class GPAcalculator extends JFrame implements ActionListener {
+
+	JTextField subject1, subject2, subject3, subject4, subject5, subject6;
+	JLabel sub1, sub2, sub3, sub4, sub5, sub6;
+	JButton btn;
+	JLabel result, cgpa;
+
+	GPAcalculator() {
+		setBounds(300, 200, 400, 400);
+		setLayout(new GridLayout(8, 2, 15, 15));
+		setSize(400, 400);
+		setTitle("Grid Layout");
+
+		subject1 = new JTextField();
+		subject2 = new JTextField();
+		subject3 = new JTextField();
+		subject4 = new JTextField();
+		subject5 = new JTextField();
+		subject6 = new JTextField();
+
+		sub1 = new JLabel("Subject1");
+		add(sub1);
+		add(subject1);
+		
+		sub2 = new JLabel("Subject2");
+		add(sub2);
+		add(subject2);
+		
+		sub3 = new JLabel("Subject3");
+		add(sub3);
+		add(subject3);
+
+		sub4 = new JLabel("Subject4");
+		add(sub4);
+		add(subject4);
+
+		sub5 = new JLabel("Subject5");
+		add(sub5);
+		add(subject5);
+
+		sub6 = new JLabel("Subject6");
+		add(sub6);
+		add(subject6);
+
+		btn = new JButton("Calculate");
+		add(btn);
+		JLabel test = new JLabel();
+		add(test);
+
+		result = new JLabel("Result");
+		add(result);
+
+		cgpa = new JLabel("CGPA");
+		add(cgpa);
+
+		btn.addActionListener(this);
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		new GPAcalculator();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		int s1 = Integer.parseInt(subject1.getText());
+		int s2 = Integer.parseInt(subject2.getText());
+		int s3 = Integer.parseInt(subject3.getText());
+		int s4 = Integer.parseInt(subject4.getText());
+		int s5 = Integer.parseInt(subject5.getText());
+		int s6 = Integer.parseInt(subject6.getText());
+
+		int total = s1 + s2 + s3 + s4 + s5 + s6;
+		double gpa = (total / 600.0) * 4;
+		result.setText(String.valueOf(total));
+		cgpa.setText(String.valueOf(gpa));
+
+	}
+}
